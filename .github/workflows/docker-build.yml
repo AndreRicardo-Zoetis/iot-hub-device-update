@@ -1,0 +1,28 @@
+name: CI
+on:
+  push:
+    branches: [ add-devcontainer ]
+  workflow_dispatch:
+jobs:
+  container-job:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:11
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # - name: troubleshoot
+      #   run: |
+      #     uname -a
+      #     ls -al
+      #     pwd
+      - name: Setup
+        run: |
+          apt-get update
+          scripts/install-deps.sh --install-aduc-deps --install-do --install-cmake --install-shellcheck
+      - name: Build tests
+        run: scripts/build.sh --clean --build-unit-tests
+      - name: Run tests
+        run: |
+          cd out
+          ctest
