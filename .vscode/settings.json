@@ -3,7 +3,7 @@
 
     },
     "cmake.buildDirectory": "${workspaceFolder}/out",
-    "cmake.cmakePath": "/tmp/deviceupdate-cmake/cmake-3.23.2-linux-x86_64/bin/cmake",
-    "cmake.cpackPath": "/tmp/deviceupdate-cmake/cmake-3.23.2-linux-x86_64/bin/cpack",
-    "cmake.ctestPath": "/tmp/deviceupdate-cmake/cmake-3.23.2-linux-x86_64/bin/ctest"
+    "cmake.cmakePath": "/tmp/deviceupdate-cmake/bin/cmake",
+    "cmake.cpackPath": "/tmp/deviceupdate-cmake/bin/cpack",
+    "cmake.ctestPath": "/tmp/deviceupdate-cmake/bin/ctest"
 }
