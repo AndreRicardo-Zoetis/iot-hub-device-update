@@ -10,7 +10,6 @@ jobs:
       image: mcr.microsoft.com/devcontainers/base:bullseye
       volumes:
         - .:/iot-hub-device-update
-        - .git/:./git
       options: --cpus 1
     steps:
       - name: Checkout
@@ -23,7 +22,7 @@ jobs:
       - name: Setup
         run: |
           apt-get update
-          scripts/install-deps.sh -a
+          scripts/install-deps.sh --install-aduc-deps --install-do --install-cmake --install-shellcheck --work-folder /iot-hub-device-update
       - name: Build tests
         run: scripts/build.sh --clean --build-unit-tests
       - name: Run tests
