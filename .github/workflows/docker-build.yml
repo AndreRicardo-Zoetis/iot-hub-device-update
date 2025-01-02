@@ -10,6 +10,7 @@ jobs:
       image: mcr.microsoft.com/devcontainers/base:bullseye
       volumes:
         - .:/iot-hub-device-update
+        - .git/:./git
       options: --cpus 1
     steps:
       - name: Checkout
