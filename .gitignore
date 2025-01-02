@@ -62,3 +62,5 @@ status_monitor
 out_test_cache/
 **/.result_h_generation_cache
 *.gcov
+### devcontainer
+.devcontainer/devcontainer.env

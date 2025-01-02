@@ -1,0 +1,35 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "valgrind",
+            "type": "shell",
+            "command": "valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose  ./out/bin/AducIotAgent -l 0 -e"
+        },
+        {
+            "label": "valgrind less",
+            "type": "shell",
+            "command": "valgrind --leak-check=full --show-leak-kinds=definite --track-origins=yes --log-file=valgrind.log --verbose  ./out/bin/AducIotAgent -l 0 -e",
+            "problemMatcher": []
+        },
+        {
+            "label": "build no logs",
+            "type": "shell",
+            // "command": "./scripts/build.sh -c --disable-console-log --disable-file-log; ./postCreateCommand.sh",
+            "command": "./scripts/build.sh -c; ./postCreateCommand.sh",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "kill ADU",
+            "type": "shell",
+            "command": "pkill AducIotAgent",
+            "problemMatcher": []
+        }
+    ]
+}
