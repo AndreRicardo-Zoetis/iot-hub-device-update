@@ -24,10 +24,13 @@
 				"ms-python.python"
 			]
 		}
-	}
+	},
+	"runArgs": ["--network=host", "--env-file",".devcontainer/devcontainer.env", "--cap-add=SYS_PTRACE","--security-opt", "seccomp=unconfined"],
+
+	"postCreateCommand": "./postCreateCommand.sh",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root",
+	"remoteUser": "root",
 
-	// "containerUser": "root"
+	"containerUser": "root"
 }
