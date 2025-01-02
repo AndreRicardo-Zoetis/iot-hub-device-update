@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check for dockerenv file
         run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+      - name: Setup
+        run: scripts/install-deps.sh -a
       - name: Build tests
         run: scripts/build.sh --clean --build-unit-tests
       - name: Run tests
