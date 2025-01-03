@@ -4,21 +4,18 @@ on:
     branches: [ add-devcontainer ]
   workflow_dispatch:
 jobs:
-  container-test-job:
+  container-job:
     runs-on: ubuntu-latest
     container:
       image: debian:11
-      # volumes:
-      #   - .:/iot-hub-device-update
-      # options: --cpus 1
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: troubleshoot
-        run: |
-          uname -a
-          ls -al
-          pwd
+      # - name: Checkout
+      #   uses: actions/checkout@v4
+      # - name: troubleshoot
+      #   run: |
+      #     uname -a
+      #     ls -al
+      #     pwd
       - name: Setup
         run: |
           apt-get update
