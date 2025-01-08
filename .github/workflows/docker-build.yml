@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [ add-devcontainer ]
+    #branches: [ add-devcontainer ]
   workflow_dispatch:
 jobs:
   container-job:
