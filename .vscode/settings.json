@@ -6,4 +6,8 @@
     "cmake.cmakePath": "/tmp/deviceupdate-cmake/bin/cmake",
     "cmake.cpackPath": "/tmp/deviceupdate-cmake/bin/cpack",
     "cmake.ctestPath": "/tmp/deviceupdate-cmake/bin/ctest",
+    "files.associations": {
+        "sstream": "cpp",
+        "functional": "cpp"
+    },
 }
