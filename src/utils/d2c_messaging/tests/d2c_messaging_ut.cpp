@@ -4,7 +4,7 @@
 #include "aduc/d2c_messaging.h"
 #include "aduc/retry_utils.h"
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <stdexcept> // runtime_error
 #include <string.h>
 
