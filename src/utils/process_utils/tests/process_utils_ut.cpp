@@ -17,7 +17,7 @@ using Catch::Matchers::ContainsSubstring;
 
 const char* command = "process_utils_tests_helper";
 
-TEST_CASE("Capture exit status", "[.][functional_test]")
+TEST_CASE("Capture exit status", "[.hide][functional_test]")
 {
     std::vector<std::string> args;
     args.emplace_back("-e");
@@ -40,7 +40,7 @@ TEST_CASE("apt-get fail")
     REQUIRE(exitCode != EXIT_SUCCESS);
 }
 
-TEST_CASE("Capture standard output", "[.][functional_test]")
+TEST_CASE("Capture standard output", "[.hide][functional_test]")
 {
     std::vector<std::string> args;
     args.emplace_back("-o");
@@ -51,7 +51,7 @@ TEST_CASE("Capture standard output", "[.][functional_test]")
     CHECK_THAT(output.c_str(), ContainsSubstring("This is a normal output string.\n"));
 }
 
-TEST_CASE("Capture standard error", "[.][functional_test]")
+TEST_CASE("Capture standard error", "[.hide][functional_test]")
 {
     std::vector<std::string> args;
     args.emplace_back("-e");
