@@ -13,12 +13,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: prereqs
-        run: |
-          azurepipelines/e2e_test/packer/deltagen/scripts/install-prereqs.sh
-      - name: Setup
+      - name: Install prereqs
         run: |
           apt-get update
+          azurepipelines/e2e_test/packer/deltagen/scripts/install-prereqs.sh
+      - name: Install dependencies
+        run: |
           scripts/install-deps.sh --install-aduc-deps --install-do --install-cmake --install-shellcheck
       - name: Build tests
         run: scripts/build.sh --clean --build-unit-tests
