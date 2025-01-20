@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  container-job:
+    strategy:
+      matrix:
+        os: [debian:11, debian:10, ubuntu:22.04, ubuntu:20.04]
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup
+        run: |
+          apt-get update
+          scripts/install-deps.sh --install-aduc-deps --install-do --install-cmake --install-shellcheck
+      - name: Build tests
+        run: scripts/build.sh --clean --build-unit-tests
+      - name: Run tests
+        run: |
+          cd out
+          ctest
