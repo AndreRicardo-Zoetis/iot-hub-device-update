@@ -5,7 +5,7 @@ include (agentRules)
 compileasc99 ()
 disablertti ()
 
-set (sources main.cpp diagnostics_config_utils_ut.cpp)
+set (sources diagnostics_config_utils_ut.cpp)
 
 find_package (Catch2 REQUIRED)
 find_package (Parson REQUIRED)
