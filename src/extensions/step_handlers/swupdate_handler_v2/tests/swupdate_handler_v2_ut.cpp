@@ -418,7 +418,7 @@ TEST_CASE("SWUpdate sample script --action-download")
     ADUC_ConfigInfo_ReleaseInstance(config);
 }
 
-TEST_CASE("SWUpdate sample script --action-install", "[.][functional_test]")
+TEST_CASE("SWUpdate sample script --action-install", "[.hide][functional_test]")
 {
     set_test_config_folder();
     const ADUC_ConfigInfo* config = ADUC_ConfigInfo_GetInstance();
