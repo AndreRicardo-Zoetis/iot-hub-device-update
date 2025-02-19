@@ -45,3 +45,6 @@ Testing/
 ### VCPKG
 .vcpkg/
 .vcpkg-installed/
+
+### devcontainer
+.devcontainer/devcontainer.env
