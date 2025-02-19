@@ -91,7 +91,11 @@ chmod u=rwx,g=rwx,o= "$adu_extensions_sources_dir"
 
 # Set deviceupdate-agent owner and permission
 chown "root:$adu_group" "$adu_shell_dir/$adu_shell_file"
+<<<<<<< HEAD
 chmod u=rxs,g=rx,o= "$adu_shell_dir/$adu_shell_file"
+=======
+chmod u=rxs,g=rx "$adu_shell_dir/$adu_shell_file"
+>>>>>>> aff678e9 (Fix for running and debugging inside docker container.)
 
 #
 # misc for healthcheck
