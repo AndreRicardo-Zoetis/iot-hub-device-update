@@ -7,11 +7,12 @@ WORKDIR /iot-hub-device-update
 COPY ./scripts/install-deps.sh /iot-hub-device-update/
 
 # Needed for `--install-githooks` option as part of `-a`
-COPY ../.git ./.git
+# COPY ../.git ./.git - removed as any commit caused full rebuild of docker
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  gdb
 
-RUN /bin/bash install-deps.sh -a
+RUN /bin/bash install-deps.sh --install-aduc-deps --install-do --install-cmake --install-shellcheck
 
 # To build in the container run
 #./scripts/build.sh -c -u --build-packages 
