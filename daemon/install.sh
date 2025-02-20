@@ -162,6 +162,6 @@ setup_dirs_and_files() {
 
 add_adu_user_and_group
 setup_dirs_and_files
-#register_daemon
+register_daemon
 
 exit 0
