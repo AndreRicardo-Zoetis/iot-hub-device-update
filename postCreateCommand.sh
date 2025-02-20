@@ -1,7 +1,14 @@
 #!/bin/bash
 set -e
 
-DUCONFIG_CONNECTION_STRING=${ADU_CONNECTION_STRING}
+DUCONFIG_COMPAT_PROPERTY_NAMES="manufacturer,model"
+DUCONFIG_DEVICEINFO_MANUFACTURER="Zoetis-andre"
+DUCONFIG_DEVICEINFO_MODEL="docker-toaster"
+DUCONFIG_AGENT_NAME="zoetis-docker-agent"
+DUCONFIG_CONNECTION_STRING=${ADU_CONNECTION_STRING} # from .devcontainer/devcontainer.env
+DUCONFIG_DEVICEPROPERTIES_MANUFACTURER="Zoetis-andre"
+DUCONFIG_DEVICEPROPERTIES_MODEL="docker-toaster"
+
 
 inline_expand_template_parameters() {
     params_to_replace="$1"
@@ -20,23 +27,22 @@ inline_expand_template_parameters() {
 
 ## ADU connection string
 
-cp du-config-docker.json /etc/adu/du-config.json
 parameters_to_expand="
+    DUCONFIG_COMPAT_PROPERTY_NAMES
+    DUCONFIG_DEVICEINFO_MANUFACTURER
+    DUCONFIG_DEVICEINFO_MODEL
+    DUCONFIG_AGENT_NAME
     DUCONFIG_CONNECTION_STRING
+    DUCONFIG_DEVICEPROPERTIES_MANUFACTURER
+    DUCONFIG_DEVICEPROPERTIES_MODEL
 "
 inline_expand_template_parameters "$parameters_to_expand" "/etc/adu/du-config.json"
 
 ## Fix permissions still wrong on setup_container.sh
-
 chmod u=rxs,g=rx,o= /usr/bin/adu-shell
 
+
 ## configure content downloader extension
-
-mkdir -p /var/lib/adu/extensions/content_downloader/
-cp scripts/docker/templates/content_downloader.extension.template.json /var/lib/adu/extensions/content_downloader/extension.json
-
-cp out/lib/libcurl_content_downloader.so /var/lib/adu/extensions/sources/
-
 so_name="libcurl_content_downloader"
 base64digest=$(openssl dgst -binary "/var/lib/adu/extensions/sources/libcurl_content_downloader.so" | openssl base64)
 
@@ -47,4 +53,3 @@ parameters_to_expand="
 target_filepath="/var/lib/adu/extensions/content_downloader/extension.json"
 
 inline_expand_template_parameters "$parameters_to_expand" "$target_filepath"
-
