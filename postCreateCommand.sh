@@ -38,8 +38,6 @@ parameters_to_expand="
 "
 inline_expand_template_parameters "$parameters_to_expand" "/etc/adu/du-config.json"
 
-## Fix permissions still wrong on setup_container.sh
-chmod u=rxs,g=rx,o= /usr/bin/adu-shell
 
 
 ## configure content downloader extension
