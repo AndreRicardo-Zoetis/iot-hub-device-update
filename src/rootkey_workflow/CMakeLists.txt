@@ -49,3 +49,7 @@ target_link_libraries (
 if (ADUC_BUILD_UNIT_TESTS)
     add_subdirectory (tests)
 endif ()
+
+if (ADUC_ROOTKEY_PKG_DOWNLOADER STREQUAL "curl")
+    target_compile_definitions (${target_name} PRIVATE ADUC_USE_CURL_ROOTKEY_DOWNLOADER=1)
+endif()
