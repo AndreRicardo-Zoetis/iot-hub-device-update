@@ -48,6 +48,12 @@ ADUC_Result RootKeyWorkflow_UpdateRootKeys(const char* workflowId, const char* w
 
     memset(&rootKeyPackage, 0, sizeof(ADUC_RootKeyPackage));
 
+    // ADUC_RootKeyPkgDownloaderInfo rootkey_downloader_info = {
+    //     .name = "DO", // DeliveryOptimization
+    //     .downloadFn = DownloadRootKeyPkg_DO,
+    //     .downloadBaseDir = workFolder,
+    // };
+
     ADUC_RootKeyPkgDownloaderInfo rootkey_downloader_info = {
 #if ROOTKEY_PKG_DOWNLOAD_USE_CURL == 1
         .name = "Curl",

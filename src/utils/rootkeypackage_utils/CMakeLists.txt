@@ -28,7 +28,7 @@ target_link_dosdk (${target_name} PRIVATE)
 target_link_libraries (
     ${target_name}
     PUBLIC aduc::c_utils aduc::hash_utils libaducpal
-    PRIVATE aduc::crypto_utils aduc::logging aduc::system_utils aduc::url_utils Parson::parson)
+    PRIVATE aduc::crypto_utils aduc::logging aduc::system_utils aduc::url_utils aduc::process_utils Parson::parson)
 
 if (ROOTKEY_PKG_DOWNLOAD_USE_CURL)
     target_link_libraries (${target_name} PRIVATE aduc::process_utils)
