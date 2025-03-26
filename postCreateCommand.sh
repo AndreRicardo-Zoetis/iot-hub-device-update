@@ -52,3 +52,44 @@ parameters_to_expand="
 target_filepath="/var/lib/adu/extensions/content_downloader/extension.json"
 
 inline_expand_template_parameters "$parameters_to_expand" "$target_filepath"
+
+# recreate some of the steps from packages/debian/postinst in particular function "register_reference_extensions"
+
+#adu_bin_path=out/bin/AducIotAgent
+#$adu_extensions_sources_dir/$adu_steps_handler_file
+
+out/bin/AducIotAgent -l 2 --extension-type updateContentHandler --extension-id "microsoft/script:1" --register-extension /var/lib/adu/extensions/sources/libmicrosoft_script_1.so
+out/bin/AducIotAgent -l 2 --extension-type updateContentHandler --extension-id "microsoft/steps:1" --register-extension /var/lib/adu/extensions/sources/libmicrosoft_steps_1.so
+out/bin/AducIotAgent -l 2 --extension-type updateContentHandler --extension-id "microsoft/update-manifest:5" --register-extension /var/lib/adu/extensions/sources/libmicrosoft_steps_1.so
+
+out/bin/AducIotAgent -l 2 --extension-type componentEnumerator --register-extension /var/lib/adu/extensions/sources/libcontoso_component_enumerator.so
+
+out/bin/AducIotAgent -l 2 --extension-type contentDownloader --register-extension /var/lib/adu/extensions/sources/libcurl_content_downloader.so
+
+mkdir -p /usr/local/contoso-devices/
+
+sample_components_inventory=$(
+    cat << END_OF_JSON
+{
+    "components": [
+        {
+            "id": "vetscan-hub",
+            "name": "vetscan-hub",
+            "group": "Hub",
+            "manufacturer": "Zoetis",
+            "model": "Hub",
+            "status": "available",
+            "hwVersion": "",
+            "swVersion": "1.7.3",
+            "lasttriedversion": "1.5.0",
+            "properties": {
+                "path": "/usr/local/contoso-devices/",
+                "firmwareDataFile": "components-inventory.json"
+            }
+        }
+    ]
+}
+END_OF_JSON
+)
+
+echo "$sample_components_inventory" > "/usr/local/contoso-devices/components-inventory.json"

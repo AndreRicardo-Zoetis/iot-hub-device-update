@@ -31,6 +31,10 @@ COPY out/bin/AducIotAgent /usr/bin/
 
 COPY scripts/docker/templates/content_downloader.extension.template.json /var/lib/adu/extensions/content_downloader/extension.json
 COPY out/lib/libcurl_content_downloader.so /var/lib/adu/extensions/sources/
+COPY out/lib/libmicrosoft_script_1.so /var/lib/adu/extensions/sources/
+COPY out/lib/libmicrosoft_steps_1.so /var/lib/adu/extensions/sources/
+COPY out/lib/libcontoso_component_enumerator.so /var/lib/adu/extensions/sources/
+
 
 # Microsoft
 COPY scripts/docker/templates/setup_container.sh /iot-hub-device-update/
