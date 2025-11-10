@@ -47,7 +47,7 @@ install_prefix=/usr/local
 install_adu=false
 work_folder=/tmp
 cmake_dir_path="${work_folder}/deviceupdate-cmake"
-rootkeypkg_curl=false
+rootkeypkg_curl=true
 
 #
 # Export the compiler settings in case VM is wonky

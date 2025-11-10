@@ -40,3 +40,21 @@ COPY out/lib/libcontoso_component_enumerator.so /var/lib/adu/extensions/sources/
 COPY scripts/docker/templates/setup_container.sh /iot-hub-device-update/
 RUN ./setup_container.sh
 
+# Changes needed to run ADU locally in Docker container
+
+COPY scripts/docker/templates/du-config.template.json /etc/adu/du-config.json
+COPY scripts/docker/templates/du-diagnostics-config.template.json /etc/adu/du-diagnostics-config.json
+
+COPY out/bin/adu-shell /usr/bin/
+COPY out/bin/AducIotAgent /usr/bin/
+
+COPY scripts/docker/templates/content_downloader.extension.template.json /var/lib/adu/extensions/content_downloader/extension.json
+COPY out/lib/libcurl_content_downloader.so /var/lib/adu/extensions/sources/
+COPY out/lib/libmicrosoft_script_1.so /var/lib/adu/extensions/sources/
+COPY out/lib/libmicrosoft_steps_1.so /var/lib/adu/extensions/sources/
+COPY out/lib/libcontoso_component_enumerator.so /var/lib/adu/extensions/sources/
+
+
+# Microsoft
+COPY scripts/docker/templates/setup_container.sh /iot-hub-device-update/
+RUN ./setup_container.sh
