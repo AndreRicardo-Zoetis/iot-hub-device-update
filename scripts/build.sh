@@ -33,7 +33,6 @@ platform_layer="linux"
 trace_target_deps=false
 step_handlers="microsoft/apt,microsoft/script,microsoft/simulator,microsoft/swupdate_v2"
 use_test_root_keys=false
-root_key_package_downloader="curl"
 srvc_e2e_agent_build=false
 build_type=Debug
 adu_log_dir=""
@@ -406,7 +405,6 @@ bullet "Logging library: $log_lib"
 bullet "Output directory: $output_directory"
 bullet "Build unit tests: $build_unittests"
 bullet "Enable E2E testing: $enable_e2e_testing"
-bullet "Root key package downloader: $root_key_package_downloader"
 bullet "Build packages: $build_packages"
 bullet "CMake: $cmake_bin"
 bullet "CMake version: $(${cmake_bin} --version | grep version | awk '{ print $3 }')"
