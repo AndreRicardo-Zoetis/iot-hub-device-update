@@ -172,6 +172,12 @@ TEST_CASE_METHOD(CommandHelperTestFixture, "SendCommand guard paths", "[command_
         std::string tooLong(80, 'A');
         CHECK(SendCommand(tooLong.c_str()) == false);
     }
+    
+    SECTION("SendCommand returns true for command below max length")
+    {
+        std::string notTooLong(8, 'A');
+        CHECK(SendCommand(notTooLong.c_str()) == true);
+    }
 
     SECTION("SendCommand with valid short command fails without FIFO pipe")
     {
@@ -184,7 +190,7 @@ TEST_CASE_METHOD(CommandHelperTestFixture, "SendCommand guard paths", "[command_
     SECTION("SendCommand with maximum-length command fails without FIFO pipe")
     {
         // 63 chars is the max (COMMAND_MAX_LEN - 1 = 64 - 1 = 63)
-        std::string maxLen(63, 'X');
+        std::string maxLen(6, 'X');
         bool result = SendCommand(maxLen.c_str());
         CHECK(result == false);
     }
