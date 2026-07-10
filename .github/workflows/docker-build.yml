@@ -74,6 +74,10 @@ jobs:
           done
       - name: Build packages and tests
         run: scripts/build.sh --clean --build-unit-tests --build-packages --type MinSizeRel --work-folder $GITHUB_WORKSPACE/.workspace
+
+      - name: Run postCreateCommand.sh
+        run: ./.devcontainer/postCreateCommand.sh
+
       - name: Run tests
         run: |
           cd out

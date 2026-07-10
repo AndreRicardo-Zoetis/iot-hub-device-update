@@ -3,8 +3,8 @@
         "args": ["-l0","-e", "h"]
     },
     "cmake.buildDirectory": "${workspaceFolder}/out",
-    "cmake.cmakePath": "${workspaceFolder}/.workspace/deviceupdate-cmake/bin/cmake",
-    "cmake.cpackPath": "${workspaceFolder}/.workspace/deviceupdate-cmake/bin/cpack",
-    "cmake.ctestPath": "${workspaceFolder}/.workspace/deviceupdate-cmake/bin/ctest",
+    "cmake.cmakePath": "/adu-deps/deviceupdate-cmake/bin/cmake",
+    "cmake.cpackPath": "/adu-deps/deviceupdate-cmake/bin/cpack",
+    "cmake.ctestPath": "/adu-deps/deviceupdate-cmake/bin/ctest",
     "cmake.ctest.testExplorerIntegrationEnabled": true,
 }

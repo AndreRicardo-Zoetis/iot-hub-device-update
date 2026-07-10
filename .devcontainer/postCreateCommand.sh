@@ -41,7 +41,7 @@ parameters_to_expand="
 inline_expand_template_parameters "$parameters_to_expand" "/etc/adu/du-config.json"
 
 # Build the ADU
-scripts/build.sh -c --work-folder .workspace
+scripts/build.sh -c -u --work-folder /adu-deps/
 
 # Make setup_container.sh happy that these files are present, since we don't actually need them to run the container.
 cp out/bin/adu-shell /usr/bin/adu-shell
