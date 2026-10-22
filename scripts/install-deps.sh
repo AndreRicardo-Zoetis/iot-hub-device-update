@@ -365,7 +365,7 @@ do_install_azure_iot_sdk() {
         "-Dskip_samples:BOOL=ON"
         "-Dbuild_service_client:BOOL=OFF"
         "-Dbuild_provisioning_service_client:BOOL=OFF"
-        "-Duse_prov_client:BOOL=OFF"
+        "-Duse_prov_client:BOOL=ON"
     )
 
     if [[ $keep_source_code == "true" ]]; then
