@@ -73,10 +73,10 @@ ssize_t msg_send_req(int fd, const ApiWireRequestMsg* msg)
             return -1;
         }
         Log_Debug("msg_send_req: wrote %zd bytes of data", nbw);
-        return sizeof(uint16_t) * 3 + nbw;
+        return (ssize_t)(sizeof(uint16_t) * 3) + nbw;
     }
     Log_Debug("msg_send_req: wrote %zd bytes of data", bytes_written);
-    return sizeof(uint16_t) * 3;
+    return (ssize_t)(sizeof(uint16_t) * 3);
 }
 
 static ssize_t _wait_until_bytes_avail_for_read(int fd)
@@ -142,7 +142,8 @@ ssize_t msg_recv_req(int fd, ApiWireRequestMsg* out_msg)
             return wait_res;
         }
 
-        br = read(fd, ((char*)header_buf) + bytes_read_total, (MSG_HDR_LEN)-bytes_read_total);
+        const size_t remaining_header_bytes = (size_t)(MSG_HDR_LEN) - (size_t)bytes_read_total;
+        br = read(fd, ((char*)header_buf) + bytes_read_total, remaining_header_bytes);
         if (br < 0)
         {
             if (errno == EINTR)
@@ -285,7 +286,8 @@ ssize_t msg_recv_resp(int fd, ApiWireResponseMsg* out_msg)
     // Now read without select in loop - data is available
     while (total_bytes_read < (ssize_t)(RESP_MSG_READ_BUF_SIZE) && retries < MAX_RETRIES)
     {
-        bytes_read = read(fd, read_buf + total_bytes_read, RESP_MSG_READ_BUF_SIZE - total_bytes_read);
+        const size_t remaining_response_bytes = (size_t)(RESP_MSG_READ_BUF_SIZE) - (size_t)total_bytes_read;
+        bytes_read = read(fd, read_buf + total_bytes_read, remaining_response_bytes);
         if (bytes_read < 0)
         {
             if (errno == EINTR || errno == EAGAIN || errno == EWOULDBLOCK)
@@ -312,7 +314,7 @@ ssize_t msg_recv_resp(int fd, ApiWireResponseMsg* out_msg)
         total_bytes_read += bytes_read;
     }
 
-    if (total_bytes_read < RESP_MSG_READ_BUF_SIZE)
+    if (total_bytes_read < (ssize_t)(RESP_MSG_READ_BUF_SIZE))
     {
         Log_Error("msg_recv_resp: incomplete message: %zd/%zu bytes", total_bytes_read, RESP_MSG_READ_BUF_SIZE);
         return -1;
